@@ -1,0 +1,39 @@
+---
+import "../styles/global.css";
+import Header from "../components/header.astro";
+const { title } = Astro.props;
+---
+
+<html lang="en" class="dark">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <script>
+            // Function to update theme
+            function updateTheme() {
+                if (
+                    localStorage.theme === "dark" ||
+                    (!("theme" in localStorage) &&
+                        window.matchMedia("(prefers-color-scheme: dark)").matches)
+                ) {
+                    document.documentElement.classList.add("dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                }
+            }
+
+            // Run on page load
+            updateTheme();
+
+            // Listen for system theme changes
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateTheme);
+        </script>
+    </head>
+    <body class="min-h-screen transition-colors duration-200">
+        <Header />
+        <slot />
+    </body>
+</html>

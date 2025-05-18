@@ -1,0 +1,28 @@
+---
+import { Moon, Sun } from "@lucide/astro";
+---
+
+<header class="m-3 flex justify-end items-center">
+    <!-- <h1>dustycode</h1> -->
+    <button type="button" id="theme-selector" class="p-2 rounded-lg hover:bg-gray-0 transition-colors">
+        <span class="sr-only">
+            Enable <span class="dark:hidden">light</span><span class="hidden dark:inline">dark</span> mode
+        </span>
+        <Moon class="hidden dark:block w-6 h-6" />
+        <Sun class="block dark:hidden w-6 h-6" />
+    </button>
+</header>
+
+<script>
+    const themeSelector = document.getElementById("theme-selector");
+    
+    themeSelector?.addEventListener("click", () => {
+        if (document.documentElement.classList.contains("dark")) {
+            localStorage.theme = "light";
+            document.documentElement.classList.remove("dark");
+        } else {
+            localStorage.theme = "dark";
+            document.documentElement.classList.add("dark");
+        }
+    });
+</script>
