@@ -1,9 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/intro.astro";
-
+import Whoami from "../components/whoami.astro";
 ---
 
 <Layout title="dustycode">
-	<Intro /> 
+	<div class="flex-col gap-3 lg:flex">
+		<Intro /> 
+		<Whoami />
+	</div>
 </Layout>

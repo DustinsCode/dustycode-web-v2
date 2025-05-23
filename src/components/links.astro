@@ -1,0 +1,56 @@
+---
+import Github from "../assets/icons/github-mark.svg";
+import Discord from "../assets/icons/discord.svg";
+import LastFM from "../assets/icons/lastfm.svg";
+import LinkedIn from "../assets/icons/linkedin.svg";
+import Bluesky from "../assets/icons/bluesky.svg";
+import { Mail } from "@lucide/astro";
+---
+
+<div class="flex gap-3 py-3 h-7">
+        <a
+            href="https://bsky.app/profile/dustycode.dev"
+            aria-label="Bluesky"
+            target="_blank"
+            class=""
+        >
+            <Bluesky class="h-7 fill-foreground" />
+        </a>
+        <a
+            href="https://github.com/DustinsCode"
+            aria-label="Github"
+            target="_blank"
+            class=""
+        >
+            <Github class="h-7 fill-foreground" />
+        </a>
+        <a
+            href="https://discordapp.com/users/195312689839341569"
+            aria-label="Discord"
+            target="_blank"
+            class=""
+        >
+            <Discord class="h-7 w-fit fill-foreground" />
+        </a>
+        <a
+            href="https://www.last.fm/user/dustycode"
+            aria-label="last.fm"
+            target="_blank"
+            class=""
+        >
+            <LastFM class="h-7 w-fit fill-foreground" />
+        </a>
+        <a
+            href="https://www.linkedin.com/in/dustycode/"
+            aria-label="LinkedIn"
+            target="_blank"
+            class=""
+        >
+            <LinkedIn class="h-7 w-fit fill-foreground" />
+        </a>
+        <a
+            href="mailto:dustin@dustycode.dev"
+        >
+            <Mail class="h-7 w-fit " />
+        </a>
+    </div>

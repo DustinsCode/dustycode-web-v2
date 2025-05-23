@@ -32,7 +32,7 @@ const { title } = Astro.props;
             window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateTheme);
         </script>
     </head>
-    <body class="min-h-screen transition-colors duration-200">
+    <body class="min-h-screen transition-colors duration-200 lg:mx-10 mx-3">
         <Header />
         <slot />
     </body>
