@@ -2,11 +2,53 @@
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/intro.astro";
 import Whoami from "../components/whoami.astro";
+import Test from "../components/test.astro";
+import { Image } from "astro:assets";
+import edmundFitzgerald from "../assets/edmund_fitzgerald.png";
 ---
 
+<script>
+	const yooperButton = document.querySelector("[data-yooper]");
+	const eddyFitz = document.getElementById("eddyFitz");
+	const audio = document.getElementById("audioPlayer") as HTMLAudioElement;
+
+	let isAnimating = false;
+
+	yooperButton?.addEventListener("click", () => {
+		if (isAnimating) return;
+
+		isAnimating = true;
+
+		eddyFitz?.classList.add('animate-')
+		// Play audio
+		audio.currentTime = 0; // Reset audio to beginning
+		audio.play().catch((error) => {
+			console.log("Audio playback failed:", error);
+		});
+	});
+</script>
+
 <Layout title="dustycode">
-	<div class="flex-col gap-3 lg:flex">
-		<Intro /> 
-		<Whoami />
+	<div
+		class="flex gap-4 md:mx-0 mx-4 justify-center flex-col md:flex-row xl:max-w-2/3"
+	>
+		<div class="flex-col gap-3 flex">
+			<Intro />
+		</div>
+		<div class="flex-col flex">
+			<Whoami />
+		</div>
 	</div>
+	<Image
+		id="eddyFitz"
+		class="fixed bottom-5 xl:right-[-800px] right-[-300px] xl:h-72 h-32 w-auto"
+		src={edmundFitzgerald}
+		alt="The Edmund Fitzgerald, a ship that was lost to Lake Superior"
+	/>
+	<audio id="audioPlayer" preload="auto">
+		<source
+			src="https://ia801608.us.archive.org/31/items/gl_20230503/02%20The%20Wreck%20of%20the%20Edmund%20Fitzgerald.mp3"
+			type="audio/mp3"
+		/>
+	</audio>
 </Layout>
