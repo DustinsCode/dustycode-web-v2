@@ -1,0 +1,40 @@
+---
+import { Birdhouse, TentTree, Trees } from "@lucide/astro";
+
+const pathname = Astro.url.pathname;
+
+const links = [
+    { name: "Home", href: "/", icon: Birdhouse },
+    { name: "Work", href: "/work", icon: TentTree },
+    { name: "Blog", href: "/blog", icon: Trees }
+];
+
+const { className } = Astro.props;
+---
+
+<div class={className}>
+    <div class="border-1 border-solid rounded-lg p-4">
+        <nav>
+            <ul>
+                {
+                    links.map((link) => (
+                        <li>
+                            <a
+                                class:list={[
+                                    "text-green flex gap-2 items-center",
+                                    pathname === link.href
+                                        ? "hover:cursor-default"
+                                        : "fancy-link"
+                                ]}
+                                href={link.href}
+                            >
+                                <link.icon class="size-4" />
+                                {link.name}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+    </div>
+</div>

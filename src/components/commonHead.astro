@@ -1,0 +1,34 @@
+---
+import { ClientRouter } from "astro:transitions";
+
+const { title } = Astro.props;
+---
+
+<head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <ClientRouter />
+        <script>
+            // Function to update theme
+            function updateTheme() {
+                if (
+                    localStorage.theme === "dark" ||
+                    (!("theme" in localStorage) &&
+                        window.matchMedia("(prefers-color-scheme: dark)").matches)
+                ) {
+                    document.documentElement.classList.add("dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                }
+            }
+
+            // Run on page load
+            updateTheme();
+
+            // Listen for system theme changes
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateTheme);
+        </script>
+    </head>

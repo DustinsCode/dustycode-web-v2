@@ -1,0 +1,11 @@
+/* Author */
+This site was built by Dustin Thurston!
+
+Github: https://github.com/DustinsCode
+Bluesky: https://bsky.app/profile/dustycode.dev
+Website: https://dustycode.dev
+
+/* Site */
+Built with Astro.build and decapcms
+
+Check out the https://humanstxt.org/ protocol to see how you should format your humans.txt file!
