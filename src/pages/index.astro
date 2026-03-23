@@ -1,5 +1,5 @@
 ---
-import LastFM from "../components/lastfm";
+import LastFM from "../components/lastfm.tsx";
 import Whoami from "../components/whoami.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -14,7 +14,7 @@ import Layout from "../layouts/Layout.astro";
             <Whoami />
 			<div class="grid grid-cols-3 gap-4">
 				<div class="col-span-1">
-                    <LastFM />
+                    <LastFM client:load />
                 </div>
 			</div>
         </div>
