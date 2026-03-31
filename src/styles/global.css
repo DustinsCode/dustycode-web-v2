@@ -120,3 +120,7 @@ body {
 .skeleton {
   @apply rounded-md animate-pulse bg-gray-0/30
 }
+
+.surface {
+  @apply bg-gray-2/10 border border-solid rounded-lg p-4
+}

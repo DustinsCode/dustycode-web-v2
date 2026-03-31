@@ -2,66 +2,65 @@
 import Layout from "../layouts/Layout.astro";
 
 const jobs = [
-    {
-        company: "Zenimax Online Studios",
-        title: "Applications Engineer",
-        notes: [
-            "Architected and built web app to bring studio knowledge and communication to one place and automate workflows across different teams - React, Fastify, BullMQ, MySQL",
-            "Worked on web app to search and review both 2D and 3D game assets - React, Fastify, ArangoDB",
-            "Worked on web app to aggregate in-game market performance data and various BI data - React, Fastify, MySQL",
-            "Managed and automated deployments for web applications and set up hosting infrastrucure - Ubuntu, Docker, Nginx, Github Actions",
-            "Worked on UX improvement features in desktop application that automates 3D asset pipeline from 3DS Max to game ready assets - Python, PyQT"
-        ],
-        startYear: "2023",
-        endYear: "Present"
-    },
-    {
-        company: "Ford Motor Company",
-        title: "Software Engineer Technical Lead",
-        notes: [
-            "Modernized legacy manufacturing quality software, leading the development effort as the team technical lead",
-            "Worked with designers and product managers to plan out features in order to meet deliverable expectations",
-            
-        ],
-        startYear: "2022",
-        endYear: "2023"
-    },
-    {
-        company: "Ford Motor Company",
-        title: 'Software Engineer - "Ford College Graduate (FCG)"',
-        notes: [
-            "Helped automate internal application onboarding into various monitoring tools, like Splunk and Dynatrace in a single self-serve web application",
-            "Worked on FordPass Android application",
-            "Built various web applications used to train and onboard engineers to company coding standards"
-        ],
-        startYear: "2019",
-        endYear: "2022"
-    }
+  {
+    company: "Zenimax Online Studios",
+    title: "Applications Engineer",
+    notes: [
+      "Architected and built web app to bring studio knowledge and communication to one place and automate workflows across different teams - React, Fastify, BullMQ, MySQL",
+      "Worked on web app to search and review both 2D and 3D game assets - React, Fastify, ArangoDB",
+      "Worked on web app to aggregate in-game market performance data and various BI data - React, Fastify, MySQL",
+      "Managed and automated deployments for web applications and set up hosting infrastrucure - Ubuntu, Docker, Nginx, Github Actions",
+      "Worked on UX improvement features in desktop application that automates 3D asset pipeline from 3DS Max to game ready assets - Python, PyQT",
+    ],
+    startYear: "2023",
+    endYear: "Present",
+  },
+  {
+    company: "Ford Motor Company",
+    title: "Software Engineer Technical Lead",
+    notes: [
+      "Modernized legacy manufacturing quality software, leading the development effort as the team technical lead",
+      "Worked with designers and product managers to plan out features in order to meet deliverable expectations",
+    ],
+    startYear: "2022",
+    endYear: "2023",
+  },
+  {
+    company: "Ford Motor Company",
+    title: 'Software Engineer - "Ford College Graduate (FCG)"',
+    notes: [
+      "Helped automate internal application onboarding into various monitoring tools, like Splunk and Dynatrace in a single self-serve web application",
+      "Worked on FordPass Android application",
+      "Built various web applications used to train and onboard engineers to company coding standards",
+    ],
+    startYear: "2019",
+    endYear: "2022",
+  },
 ];
 ---
 
 <Layout title="dustycode - work">
-    <div class="flex flex-col gap-3 [&>*]:mx-auto">
-        <h1 class="font-semibold text-5xl">Work Experience</h1>
-        <div class="[&>*]:mb-3">
-            {
-                jobs.map((job) => (
-                    <div class="border border-solid rounded-lg p-6">
-                        <h2 class="text-2xl">{job.title}</h2>
-                        <div class="text-lg flex gap-2 items-center">
-                            {job.company}
-                            <span class="text-gray-0 text-sm">
-                                {job.startYear} - {job.endYear}
-                            </span>
-                        </div>
-                        <ul class="list-disc ml-3 [&>li]:mb-2 text-md">
-                            {job.notes.map((note) => (
-                                <li>{note}</li>
-                            ))}
-                        </ul>
-                    </div>
-                ))
-            }
-        </div>
+  <div class="flex flex-col gap-3 *:mx-auto">
+    <h1 class="font-semibold text-5xl">Resume</h1>
+    <div class="*:mb-3">
+      {
+        jobs.map((job) => (
+          <div class="surface">
+            <h2 class="text-2xl">{job.title}</h2>
+            <div class="text-lg flex gap-2 items-center">
+              {job.company}
+              <span class="text-gray-0 text-sm">
+                {job.startYear} - {job.endYear}
+              </span>
+            </div>
+            <ul class="list-disc ml-3 [&>li]:mb-2 text-md">
+              {job.notes.map((note) => (
+                <li>{note}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
+  </div>
 </Layout>

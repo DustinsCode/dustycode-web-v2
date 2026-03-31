@@ -21,7 +21,7 @@ export default function LastFM() {
   }, [])
 
   if (loading) return (
-    <div className="border border-solid rounded-lg p-6">
+    <div className="surface">
       <div className='skeleton h-6 w-32 mb-2' />
       <div className=' flex gap-3 items-center'>
         <div className='skeleton size-16 rounded-full' />
@@ -33,7 +33,7 @@ export default function LastFM() {
   if (error) return null;
 
   return (
-    <div className="border border-solid rounded-lg p-6">
+    <div className="surface">
       <h2 className="text-2xl mb-2">
         {track.nowplaying ? "Now playing" : "Recently Played"}
       </h2>

@@ -11,26 +11,26 @@ const { title } = Astro.props;
 ---
 
 <html lang="en" class="dark">
-    <CommonHead title={title} />
-    <body
-        class="min-h-screen transition-colors duration-200 lg:mx-10 mx-3 flex flex-col justify-between"
-    >
-        <div class="">
-            <Header />
-            <div
-                class="grid grid-flow-col xl:grid-cols-4 auto-rows-auto gap-4 xl:max-w-2/3 mx-auto"
-            >
-                <div class="col-span-3">
-                    <slot />
-                </div>
-                <div class="flex flex-col gap-4">
-                    <Nav className="row-span-2" />
-                    <Links className="" />
-                </div>
-            </div>
+  <CommonHead title={title} />
+  <body
+    class="min-h-screen transition-colors duration-200 lg:mx-10 mx-3 flex flex-col justify-between"
+  >
+    <div class="">
+      <Header />
+      <div
+        class="grid grid-flow-col xl:grid-cols-4 auto-rows-auto gap-4 xl:max-w-2/3 mx-auto"
+      >
+        <div class="flex flex-col gap-4">
+          <Nav className="row-span-2" />
+          <Links className="" />
         </div>
-        <div class="self-center">
-            <Footer />
+        <div class="col-span-3">
+          <slot />
         </div>
-    </body>
+      </div>
+    </div>
+    <div class="self-center">
+      <Footer />
+    </div>
+  </body>
 </html>
