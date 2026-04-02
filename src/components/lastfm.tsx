@@ -1,24 +1,8 @@
+import { useLastFm } from '@/hooks/use-lastfm.ts';
 import clsx from 'clsx';
-import { useEffect, useState } from "react";
-import type { TrackResponse } from '../types/lastfm.ts';
 
 export default function LastFM() {
-  const [track, setTrack] = useState<TrackResponse>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/lastfm/recentTracks')
-      .then(res => res.json())
-      .then(data => {
-        setTrack(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      })
-  }, [])
+  const { track, loading, error } = useLastFm();
 
   if (loading) return (
     <div className="surface">

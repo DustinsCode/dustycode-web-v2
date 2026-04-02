@@ -18,7 +18,12 @@ const { className } = Astro.props;
       <ul>
         {
           links.map((link) => (
-            <li>
+            <li
+              class:list={[
+                pathname === link.href && "bg-bg-dim",
+                "rounded-md p-2",
+              ]}
+            >
               <a
                 class:list={[
                   "text-green flex gap-2 items-center",
