@@ -1,23 +1,21 @@
 import clsx from 'clsx';
 import { useEffect, useState } from "react";
 import type { TrackResponse } from '../types/lastfm.ts';
+import { actions } from 'astro:actions';
 
 export default function LastFM() {
-  const [track, setTrack] = useState<TrackResponse>();
+  const [track, setTrack] = useState<TrackResponse | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/lastfm/recentTracks')
-      .then(res => res.json())
-      .then(data => {
-        setTrack(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      })
+    actions.getRecentTrack().then((data) => {
+      setTrack(data.data);
+      setLoading(false);
+    }).catch(err => {
+      setError(err.message);
+      setLoading(false);
+    })
   }, [])
 
   if (loading) return (

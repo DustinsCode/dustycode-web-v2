@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/mdx": "5.0.2",
     "@astrojs/netlify": "^7.0.4",
+    "@astrojs/node": "^10.0.4",
     "@astrojs/react": "5.0.1",
     "@lucide/astro": "^0.563.0",
     "@nanostores/react": "^1.0.0",

@@ -5,6 +5,8 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import netlify from '@astrojs/netlify';
 
+import node from '@astrojs/node';
+
 // https://astro.build/config
 export default defineConfig({
   server: {
@@ -13,6 +15,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  adapter: netlify(),
+  output: 'server',
+  adapter: process.env.NODE_ENV === 'production' ?
+    netlify() : node({
+      mode: 'standalone'
+    }),
   integrations: [mdx(), react()]
 });
