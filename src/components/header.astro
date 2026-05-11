@@ -1,28 +1,36 @@
 ---
 import { Moon, Sun } from "@lucide/astro";
+import Nav from "./nav.astro";
 ---
 
-<header class="m-3 flex justify-end items-center">
-    <!-- <h1>dustycode</h1> -->
-    <button type="button" id="theme-selector" class="p-2 rounded-lg hover:scale-105 transition-all ease-in-out duration-300 hover:cursor-pointer">
-        <span class="sr-only">
-            Enable <span class="dark:hidden">light</span><span class="hidden dark:inline">dark</span> mode
-        </span>
-        <Moon class="hidden dark:block w-6 h-6" />
-        <Sun class="block dark:hidden w-6 h-6" />
-    </button>
+<header class="m-3 flex justify-between items-center">
+  <button
+    type="button"
+    id="theme-selector"
+    class="p-2 rounded-lg hover:scale-105 transition-all ease-in-out duration-300 hover:cursor-pointer"
+  >
+    <span class="sr-only">
+      Enable <span class="dark:hidden">light</span><span
+        class="hidden dark:inline">dark</span
+      > mode
+    </span>
+    <Moon class="hidden dark:block w-6 h-6" />
+    <Sun class="block dark:hidden w-6 h-6" />
+  </button>
+
+  <Nav className="xl:hidden block" isMobile={true} />
 </header>
 
 <script>
-    const themeSelector = document.getElementById("theme-selector");
-    
-    themeSelector?.addEventListener("click", () => {
-        if (document.documentElement.classList.contains("dark")) {
-            localStorage.theme = "light";
-            document.documentElement.classList.remove("dark");
-        } else {
-            localStorage.theme = "dark";
-            document.documentElement.classList.add("dark");
-        }
-    });
+  const themeSelector = document.getElementById("theme-selector");
+
+  themeSelector?.addEventListener("click", () => {
+    if (document.documentElement.classList.contains("dark")) {
+      localStorage.theme = "light";
+      document.documentElement.classList.remove("dark");
+    } else {
+      localStorage.theme = "dark";
+      document.documentElement.classList.add("dark");
+    }
+  });
 </script>

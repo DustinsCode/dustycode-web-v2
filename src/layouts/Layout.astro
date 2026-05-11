@@ -5,7 +5,6 @@ import Header from "../components/header.astro";
 import CommonHead from "../components/commonHead.astro";
 import Footer from "../components/footer.astro";
 import Nav from "../components/nav.astro";
-import Links from "../components/links.astro";
 
 const { title } = Astro.props;
 ---
@@ -18,12 +17,12 @@ const { title } = Astro.props;
     <div class="">
       <Header />
       <div
-        class="grid grid-flow-col xl:grid-cols-4 auto-rows-auto gap-4 xl:max-w-2/3 mx-auto"
+        class="grid xl:grid-flow-col grid-cols-1 xl:grid-cols-4 auto-rows-auto gap-4 xl:max-w-2/3 mx-auto"
       >
-        <div class="flex flex-col gap-4">
-          <Nav className="row-span-2" />
-          <Links className="" />
-        </div>
+        <Nav
+          className="xl:row-span-2 xl:col-span-1 hidden xl:block"
+          isMobile={false}
+        />
         <div class="col-span-3">
           <slot />
         </div>

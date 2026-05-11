@@ -27,3 +27,4 @@ mise.toml
 
 # Local Netlify folder
 .netlify
+bun.lock

@@ -2,6 +2,7 @@
 import LastFM from "../components/lastfm.tsx";
 import Whoami from "../components/whoami.astro";
 import Layout from "../layouts/Layout.astro";
+import Links from "../components/links.astro";
 ---
 
 <Layout title="dustycode">
@@ -12,6 +13,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="col-span-2">
           <LastFM client:load />
         </div>
+        <Links className="row-span-1 col-span-1" />
       </div>
     </div>
   </div>

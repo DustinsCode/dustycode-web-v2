@@ -1,5 +1,5 @@
 ---
-import { Birdhouse, TentTree, Trees } from "@lucide/astro";
+import { Birdhouse, Menu, TentTree, Trees } from "@lucide/astro";
 
 const pathname = Astro.url.pathname;
 
@@ -9,32 +9,81 @@ const links = [
   { name: "Blog", href: "/blog", icon: Trees },
 ];
 
-const { className } = Astro.props;
+const initialState = "closed";
+
+const { className, isMobile = false } = Astro.props;
 ---
 
+<script>
+  const menuButton = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+
+  menuButton?.addEventListener("click", () => {
+    if (menuButton.dataset.state === "closed") {
+      menuButton.dataset.state = "open";
+      mobileNav?.classList.remove("hidden");
+      mobileNav?.classList.add("absolute");
+    } else {
+      menuButton.dataset.state = "closed";
+      mobileNav?.classList.remove("absolute");
+      mobileNav?.classList.add("hidden");
+    }
+  });
+</script>
+
 <div class={className}>
-  <div class="surface">
-    <nav>
-      <ul>
-        {
-          links.map((link) => (
-            <li>
-              <a
-                class:list={[
-                  "text-green flex gap-2 items-center",
-                  pathname === link.href
-                    ? "hover:cursor-default"
-                    : "fancy-link",
-                ]}
-                href={link.href}
-              >
-                <link.icon class="size-4" />
-                {link.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div>
+  {
+    isMobile ? (
+      <div>
+        <button class="p-2" id="menuToggle" data-state={initialState}>
+          <Menu />
+        </button>
+        <div
+          id="mobileNav"
+          class:list={["hidden", "z-30 bg-bg-4 p-3 border rounded-lg right-3"]}
+        >
+          <nav>
+            <ul>
+              {links.map((link) => (
+                <li>
+                  <a
+                    class:list={[
+                      "text-green flex gap-2 items-center",
+                      pathname !== link.href && "fancy-link",
+                    ]}
+                  >
+                    <link.icon class="size-4" />
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    ) : (
+      <div class="surface">
+        <nav>
+          <ul>
+            {links.map((link) => (
+              <li>
+                <a
+                  class:list={[
+                    "text-green flex gap-2 items-center",
+                    pathname === link.href
+                      ? "hover:cursor-default"
+                      : "fancy-link",
+                  ]}
+                  href={link.href}
+                >
+                  <link.icon class="size-4" />
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 </div>
