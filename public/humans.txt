@@ -1,11 +1,18 @@
+ _____              __         ______          __       __
+|     \.--.--.-----|  |_.--.--|      .-----.--|  .-----|  |
+|  --  |  |  |__ --|   _|  |  |   ---|  _  |  _  |  -__|__|
+|_____/|_____|_____|____|___  |______|_____|_____|_____|__|
+                        |_____|
+
 /* Author */
 This site was built by Dustin Thurston!
 
 Github: https://github.com/DustinsCode
+Tangled: https://tangled.org/dustycode.dev
 Bluesky: https://bsky.app/profile/dustycode.dev
 Website: https://dustycode.dev
 
 /* Site */
-Built with Astro.build and decapcms
+Built with Astro and Bun
 
 Check out the https://humanstxt.org/ protocol to see how you should format your humans.txt file!

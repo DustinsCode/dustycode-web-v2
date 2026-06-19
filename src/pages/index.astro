@@ -9,11 +9,11 @@ import Links from "../components/links.astro";
   <div class="flex gap-4 justify-center flex-col md:flex-row">
     <div class="flex-col flex mx-auto w-full gap-3">
       <Whoami />
-      <div class="grid grid-cols-3 gap-4">
+      <div class="grid xl:grid-cols-3 gap-y-4 xl:gap-4 grid-cols-1">
         <div class="col-span-2">
           <LastFM client:load />
         </div>
-        <Links className="row-span-1 col-span-1" />
+        <Links className="row-span-1 lg:col-span-1" />
       </div>
     </div>
   </div>

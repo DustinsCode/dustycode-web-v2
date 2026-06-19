@@ -4,24 +4,34 @@ import Discord from "../assets/icons/discord.svg";
 import LastFM from "../assets/icons/lastfm.svg";
 import LinkedIn from "../assets/icons/linkedin.svg";
 import Bluesky from "../assets/icons/bluesky.svg";
+import Tangled from "../assets/icons/tangled.svg";
 import { Mail } from "@lucide/astro";
 
 const { className } = Astro.props;
 ---
 
-<div class={`surface ${className}`}>
-  <h1 class="text-2xl">Where to find me</h1>
-  <div class="flex gap-3 h-8 items-center">
+<div class={`surface ${className} flex flex-col justify-center`}>
+  <h1 class="text-2xl text-center">Where to find me</h1>
+  <div class="flex gap-3 h-8 items-center justify-evenly">
     <a
       href="https://bsky.app/profile/dustycode.dev"
       aria-label="Bluesky"
+      title="Bluesky"
       target="_blank"
     >
       <Bluesky class="h-4 fill-blue" />
     </a>
+    <a 
+      href="https://tangled.org/dustycode.dev"
+      aria-label="Tangled"
+      title="Tangled"
+      target="_blank"
+    >
+    <Tangled class="h-4 fill-blue" /></a>
     <a
       href="https://github.com/DustinsCode"
       aria-label="Github"
+      title="Github"
       target="_blank"
     >
       <Github class="h-4 fill-blue" />
@@ -29,6 +39,7 @@ const { className } = Astro.props;
     <a
       href="https://discordapp.com/users/195312689839341569"
       aria-label="Discord"
+      title="Discord"
       target="_blank"
     >
       <Discord class="h-4 w-fit fill-blue" />
@@ -36,6 +47,7 @@ const { className } = Astro.props;
     <a
       href="https://www.last.fm/user/dustycode"
       aria-label="last.fm"
+      title="Last.FM"
       target="_blank"
     >
       <LastFM class="h-4 w-fit fill-blue" />
@@ -43,11 +55,12 @@ const { className } = Astro.props;
     <a
       href="https://www.linkedin.com/in/dustycode/"
       aria-label="LinkedIn"
+      title="LinkedIn"
       target="_blank"
     >
       <LinkedIn class="h-4 w-fit fill-blue" />
     </a>
-    <a href="mailto:dustin@dustycode.dev" aria-label="email">
+    <a href="mailto:dustin@dustycode.dev" title="Email" aria-label="email">
       <Mail class="h-4 w-fit text-blue" />
     </a>
   </div>
