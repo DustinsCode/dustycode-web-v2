@@ -4,9 +4,9 @@ import { Birdhouse, Menu, TentTree, Trees } from "@lucide/astro";
 const pathname = Astro.url.pathname;
 
 const links = [
-  { name: "Home", href: "/", icon: Birdhouse },
-  { name: "Work", href: "/work", icon: TentTree },
-  { name: "Blog", href: "/blog", icon: Trees },
+    { name: "Home", href: "/", icon: Birdhouse },
+    { name: "Work", href: "/work", icon: TentTree },
+    { name: "Blog", href: "/blog", icon: Trees }
 ];
 
 const initialState = "closed";
@@ -15,75 +15,84 @@ const { className, isMobile = false } = Astro.props;
 ---
 
 <script>
-  const menuButton = document.getElementById("menuToggle");
-  const mobileNav = document.getElementById("mobileNav");
+    const menuButton = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
 
-  menuButton?.addEventListener("click", () => {
-    if (menuButton.dataset.state === "closed") {
-      menuButton.dataset.state = "open";
-      mobileNav?.classList.remove("hidden");
-      mobileNav?.classList.add("absolute");
-    } else {
-      menuButton.dataset.state = "closed";
-      mobileNav?.classList.remove("absolute");
-      mobileNav?.classList.add("hidden");
+    function handleClick() {
+        if (menuButton) {
+            if (menuButton.dataset.state === "closed") {
+                menuButton.dataset.state = "open";
+                mobileNav?.classList.remove("hidden");
+                mobileNav?.classList.add("absolute");
+            } else {
+                menuButton.dataset.state = "closed";
+                mobileNav?.classList.remove("absolute");
+                mobileNav?.classList.add("hidden");
+            }
+        }
     }
-  });
+
+    menuButton?.addEventListener("click", handleClick);
 </script>
 
-<div class={className}>
-  {
-    isMobile ? (
-      <div>
-        <button class="p-2" id="menuToggle" data-state={initialState}>
-          <Menu />
-        </button>
-        <div
-          id="mobileNav"
-          class:list={["hidden", "z-30 bg-bg-4 p-3 border rounded-lg right-4"]}
-        >
-          <nav>
-            <ul>
-              {links.map((link) => (
-                <li>
-                  <a
+<div class={className} transition:persist>
+    {
+        isMobile ? (
+            <div>
+                <button class="p-2" id="menuToggle" data-state={initialState}>
+                    <Menu />
+                </button>
+                <div
+                    id="mobileNav"
                     class:list={[
-                      "text-green flex gap-2 items-center",
-                      pathname !== link.href && "fancy-link",
+                        "hidden",
+                        "z-30 bg-bg-4 p-3 border rounded-lg right-4"
                     ]}
-                  >
-                    <link.icon class="size-4" />
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </div>
-    ) : (
-      <div class="surface">
-        <nav>
-          <ul>
-            {links.map((link) => (
-              <li>
-                <a
-                  class:list={[
-                    "text-green flex gap-2 items-center",
-                    pathname === link.href
-                      ? "hover:cursor-default"
-                      : "fancy-link",
-                  ]}
-                  href={link.href}
                 >
-                  <link.icon class="size-4" />
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    )
-  }
+                    <nav>
+                        <ul>
+                            {links.map((link) => (
+                                <li>
+                                    <a
+                                        class:list={[
+                                            "text-green flex gap-2 items-center",
+                                            pathname !== link.href &&
+                                                "fancy-link"
+                                        ]}
+                                        href={link.href}
+                                    >
+                                        <link.icon class="size-4" />
+                                        {link.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        ) : (
+            <div class="surface">
+                <nav>
+                    <ul>
+                        {links.map((link) => (
+                            <li>
+                                <a
+                                    class:list={[
+                                        "text-green flex gap-2 items-center",
+                                        pathname === link.href
+                                            ? "hover:cursor-default"
+                                            : "fancy-link"
+                                    ]}
+                                    href={link.href}
+                                >
+                                    <link.icon class="size-4" />
+                                    {link.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
+        )
+    }
 </div>
