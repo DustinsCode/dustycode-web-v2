@@ -32,6 +32,15 @@ const { className, isMobile = false } = Astro.props;
         }
     }
 
+    document.addEventListener("astro:page-load", () => {
+        // Runs when the view transition is completely done
+        if (menuButton) {
+            menuButton.dataset.state = "closed";
+            mobileNav?.classList.remove("absolute");
+            mobileNav?.classList.add("hidden");
+        }
+    });
+
     menuButton?.addEventListener("click", handleClick);
 </script>
 

@@ -4,24 +4,26 @@ import me from "../assets/me.jpg";
 ---
 
 <div class="border border-solid rounded-lg p-6 surface">
-  <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
-    <div class="flex-1 space-y-2">
-      <h1 class="text-5xl font-bold">Hi, I'm Dustin!</h1>
-      <p class="text-lg">
-        I'm a senior full stack software engineer from Michigan, currently
-        working on some cool stuff at Zenimax Online Studios!
-      </p>
-      <p>
-        I love art and music and lately I've been really into photography, stories, and tennis!
-        I have a lot of other interests and love learning about other people's passions, so please
-        chat me up about them! 
-      </p>
+    <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+        <div class="flex-1 space-y-2">
+            <h1 class="text-5xl font-bold">Hi, I'm Dustin!</h1>
+            <p class="text-lg">
+                I'm a senior full stack software engineer from Michigan,
+                currently working on some cool stuff at Zenimax Online Studios!
+            </p>
+            <p>
+                I love art and music and lately I've been really into
+                photography, stories (movies, shows, games, etc. The medium does
+                not particularly matter to me), and tennis! I have a lot of
+                other interests and love learning about other people's passions,
+                so please chat me up about them!
+            </p>
+        </div>
+        <Image
+            class="rounded-full size-40 shrink-0 -order-1 xl:order-1"
+            loading="eager"
+            src={me}
+            alt="Me smiling in my snowboarding jacket on a sunny winter day"
+        />
     </div>
-    <Image
-      class="rounded-full size-40 shrink-0 -order-1 xl:order-1"
-      loading="eager"
-      src={me}
-      alt="Me smiling in my snowboarding jacket on a sunny winter day"
-    />
-  </div>
 </div>
