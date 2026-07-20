@@ -12,15 +12,15 @@ const { title } = Astro.props;
 <html lang="en" class="dark">
   <CommonHead title={title} />
   <body
-    class="min-h-screen transition-colors duration-200 lg:mx-10 mx-3 flex flex-col justify-between"
+    class="min-h-screen transition-colors duration-200 mx-3 flex flex-col justify-between"
   >
     <div class="">
       <Header />
       <div
-        class="grid xl:grid-flow-col grid-cols-1 xl:grid-cols-4 auto-rows-auto gap-4 xl:max-w-2/3 mx-auto"
+        class="grid lg:grid-flow-col grid-cols-1 lg:grid-cols-4 auto-rows-auto gap-4 xl:max-w-2/3 lg:max-w-5/6 mx-auto"
       >
         <Nav
-          className="xl:row-span-2 xl:col-span-1 hidden xl:block"
+          className="lg:row-span-2 lg:col-span-1 hidden lg:block"
           isMobile={false}
         />
         <div class="col-span-3">

@@ -3,7 +3,9 @@ import { Moon, Sun } from "@lucide/astro";
 import Nav from "./nav.astro";
 ---
 
-<header class="m-3 flex justify-between items-center">
+<header class:list={["m-3 flex justify-between lg:justify-end items-center"]}>
+  <Nav className="lg:hidden block" isMobile={true} />
+
   <button
     type="button"
     id="theme-selector"
@@ -11,14 +13,13 @@ import Nav from "./nav.astro";
   >
     <span class="sr-only">
       Enable <span class="dark:hidden">light</span><span
-        class="hidden dark:inline">dark</span
+        class="hidden">dark</span
       > mode
     </span>
-    <Moon class="hidden dark:block w-6 h-6" />
-    <Sun class="block dark:hidden w-6 h-6" />
+    <Moon class="hidden w-6 h-6" />
+    <Sun class="block w-6 h-6" />
   </button>
 
-  <Nav className="xl:hidden block" isMobile={true} />
 </header>
 
 <script>

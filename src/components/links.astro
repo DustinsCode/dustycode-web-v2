@@ -12,7 +12,7 @@ const { className } = Astro.props;
 
 <div class={`surface ${className} flex flex-col justify-center`}>
   <h1 class="text-2xl text-center">Where to find me</h1>
-  <div class="flex gap-3 h-8 items-center justify-evenly">
+  <div class="flex gap-3 h-8 items-center justify-evenly flex-wrap">
     <a
       href="https://bsky.app/profile/dustycode.dev"
       aria-label="Bluesky"
@@ -21,13 +21,14 @@ const { className } = Astro.props;
     >
       <Bluesky class="h-4 fill-blue" />
     </a>
-    <a 
+    <a
       href="https://tangled.org/dustycode.dev"
       aria-label="Tangled"
       title="Tangled"
       target="_blank"
     >
-    <Tangled class="h-4 fill-blue" /></a>
+      <Tangled class="h-4 fill-blue" /></a
+    >
     <a
       href="https://github.com/DustinsCode"
       aria-label="Github"
