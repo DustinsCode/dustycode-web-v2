@@ -1,5 +1,5 @@
 ---
-import { Birdhouse, Menu, TentTree, Trees } from "@lucide/astro";
+import { Birdhouse, TentTree, Trees } from "@lucide/astro";
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
@@ -9,12 +9,14 @@ const links = [
     { name: "Blog", href: "/blog", icon: Trees }
 ];
 
-const initialState = "closed";
-
 const { className, isMobile = false } = Astro.props;
 ---
 
 <script>
+    function normalizePathname(pathname: string) {
+        return pathname.replace(/\/$/, "") || "/";
+    }
+
     function resetMobileNav() {
         const menuButton = document.getElementById("menuToggle");
         const mobileNav = document.getElementById("mobileNav");
@@ -22,6 +24,19 @@ const { className, isMobile = false } = Astro.props;
         menuButton.dataset.state = "closed";
         mobileNav?.classList.remove("absolute");
         mobileNav?.classList.add("hidden");
+    }
+
+    function updateActiveNav() {
+        const currentPathname = normalizePathname(window.location.pathname);
+
+        document.querySelectorAll("[data-nav-link]").forEach((link) => {
+            const href = link.getAttribute("data-nav-link");
+            const isActive = href === currentPathname;
+
+            link.classList.toggle("hover:cursor-default", isActive);
+            link.classList.toggle("animated-link", !isActive);
+            link.setAttribute("aria-current", isActive ? "page" : "false");
+        });
     }
 
     function toggleMobileNav() {
@@ -39,7 +54,11 @@ const { className, isMobile = false } = Astro.props;
         }
     }
 
-    document.addEventListener("astro:page-load", resetMobileNav);
+    document.addEventListener("astro:page-load", () => {
+        resetMobileNav();
+        updateActiveNav();
+    });
+
     document.addEventListener("click", (event) => {
         const target = event.target;
         if (!(target instanceof Element)) return;
@@ -50,8 +69,12 @@ const { className, isMobile = false } = Astro.props;
 
     if (document.readyState !== "loading") {
         resetMobileNav();
+        updateActiveNav();
     } else {
-        document.addEventListener("DOMContentLoaded", resetMobileNav);
+        document.addEventListener("DOMContentLoaded", () => {
+            resetMobileNav();
+            updateActiveNav();
+        });
     }
 </script>
 
@@ -59,39 +82,9 @@ const { className, isMobile = false } = Astro.props;
     {
         isMobile ? (
             <div>
-                {/* <button class="p-2" id="menuToggle" data-state={initialState}>
-                    <Menu />
-                </button>
-                <div
-                    id="mobileNav"
-                    class:list={[
-                        "hidden",
-                        "z-30 bg-bg-4 p-3 border rounded-lg right-4"
-                    ]}
-                >
-                    <nav>
-                        <ul>
-                            {links.map((link) => (
-                                <li>
-                                    <a
-                                        class:list={[
-                                            "text-green flex gap-2 items-center",
-                                            pathname !== link.href &&
-                                                "fancy-link"
-                                        ]}
-                                        href={link.href}
-                                    >
-                                        <link.icon class="size-4" />
-                                        {link.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
-                </div> */}
                 <nav class="flex gap-3">
                     {links.map((link) => (
-                        <a href={link.href}>
+                        <a data-nav-link={link.href} href={link.href}>
                             {link.name}
                         </a>
                     ))}
@@ -108,9 +101,11 @@ const { className, isMobile = false } = Astro.props;
                                         "text-green flex gap-2 items-center",
                                         pathname === link.href
                                             ? "hover:cursor-default"
-                                            : "fancy-link"
+                                            : "animated-link"
                                     ]}
+                                    data-nav-link={link.href}
                                     href={link.href}
+                                    aria-current={pathname === link.href ? "page" : undefined}
                                 >
                                     <link.icon class="size-4" />
                                     {link.name}
