@@ -33,6 +33,8 @@ const analyticsId = import.meta.env.ANALYTICS_ID;
     // Run on page load
     updateTheme();
 
+    document.addEventListener("astro:after-swap", updateTheme);
+
     // Listen for system theme changes
     window
       .matchMedia("(prefers-color-scheme: dark)")

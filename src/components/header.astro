@@ -22,9 +22,10 @@ import Nav from "./nav.astro";
 </header>
 
 <script>
-  const themeSelector = document.getElementById("theme-selector");
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target?.closest("#theme-selector")) return;
 
-  themeSelector?.addEventListener("click", () => {
     if (document.documentElement.classList.contains("dark")) {
       localStorage.theme = "light";
       document.documentElement.classList.remove("dark");
