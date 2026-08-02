@@ -6,14 +6,14 @@ import Links from "../components/links.astro";
 ---
 
 <Layout title="dustycode">
-  <div class="flex gap-4 justify-center flex-col md:flex-row">
-    <div class="flex-col flex mx-auto w-full gap-3">
+  <div class="flex gap-4 justify-center flex-col md:flex-row mx-auto">
+    <div class="flex-col flex mx-auto gap-3">
       <Whoami />
-      <div class="grid xl:grid-cols-3 gap-y-4 xl:gap-4 grid-cols-1">
-        <div class="col-span-2">
+      <div class="grid md:grid-cols-3 gap-y-4 gap-4 grid-cols-1">
+        <div class="col-span-2 h-full">
           <LastFM client:load />
         </div>
-        <Links className="row-span-1 lg:col-span-1" />
+        <Links className="row-span-1 md:col-span-1" />
       </div>
     </div>
   </div>

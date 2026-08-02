@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { ChevronLeft } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+if (!post) {
+  return Astro.redirect("/blog");
+}
+const { Content } = await render(post);
+
+const displayDate = post.data.pubDate.toLocaleDateString("en-US", {
+  timeZone: "UTC",
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<Layout title=`Dustin's Blog - ${post.data.title}`>
+  <a href="/blog" class="link inline-flex items-center pull-up"
+    ><ChevronLeft class="size-4" />back
+  </a>
+  <div class="surface">
+    <article class="prose dark:prose-invert w-full mx-auto prose-a:link">
+      {
+        post.data.coverImage && (
+          <div class="not-prose w-full! flex justify-center">
+            <Image
+              src={post.data.coverImage}
+              loading="eager"
+              alt={
+                post.data.coverImageAlt ??
+                "Cover image for this post. Unfortunately there is no alt text provided"
+              }
+              class="rounded-lg w-full max-w-3xl"
+            />
+          </div>
+        )
+      }
+
+      <h1 class="mb-0">{post.data.title}</h1>
+      <time class="">{displayDate}</time>
+      <Content />
+    </article>
+  </div>
+</Layout>

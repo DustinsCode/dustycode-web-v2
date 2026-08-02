@@ -1,120 +1,121 @@
 ---
-import { Birdhouse, TentTree, Trees } from "@lucide/astro";
+import { Binoculars, Birdhouse, Trees, Pickaxe } from "@lucide/astro";
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
 const links = [
-    { name: "Home", href: "/", icon: Birdhouse },
-    { name: "About", href: "/about", icon: TentTree },
-    { name: "Blog", href: "/blog", icon: Trees }
+  { name: "Home", href: "/", icon: Birdhouse },
+  { name: "Blog", href: "/blog", icon: Trees },
+  { name: "Uses", href: "/uses", icon: Binoculars },
+  { name: "Resume", href: "/resume", icon: Pickaxe },
 ];
 
 const { className, isMobile = false } = Astro.props;
 ---
 
 <script>
-    function normalizePathname(pathname: string) {
-        return pathname.replace(/\/$/, "") || "/";
-    }
+  function normalizePathname(pathname: string) {
+    return pathname.replace(/\/$/, "") || "/";
+  }
 
-    function resetMobileNav() {
-        const menuButton = document.getElementById("menuToggle");
-        const mobileNav = document.getElementById("mobileNav");
-        if (!menuButton) return;
-        menuButton.dataset.state = "closed";
-        mobileNav?.classList.remove("absolute");
-        mobileNav?.classList.add("hidden");
-    }
+  function resetMobileNav() {
+    const menuButton = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+    if (!menuButton) return;
+    menuButton.dataset.state = "closed";
+    mobileNav?.classList.remove("absolute");
+    mobileNav?.classList.add("hidden");
+  }
 
-    function updateActiveNav() {
-        const currentPathname = normalizePathname(window.location.pathname);
+  function updateActiveNav() {
+    const currentPathname = normalizePathname(window.location.pathname);
 
-        document.querySelectorAll("[data-nav-link]").forEach((link) => {
-            const href = link.getAttribute("data-nav-link");
-            const isActive = href === currentPathname;
+    document.querySelectorAll("[data-nav-link]").forEach((link) => {
+      const href = link.getAttribute("data-nav-link");
+      const isActive = href === currentPathname;
 
-            link.classList.toggle("hover:cursor-default", isActive);
-            link.classList.toggle("animated-link", !isActive);
-            link.setAttribute("aria-current", isActive ? "page" : "false");
-        });
-    }
-
-    function toggleMobileNav() {
-        const menuButton = document.getElementById("menuToggle");
-        const mobileNav = document.getElementById("mobileNav");
-        if (!menuButton) return;
-        if (menuButton.dataset.state === "closed") {
-            menuButton.dataset.state = "open";
-            mobileNav?.classList.remove("hidden");
-            mobileNav?.classList.add("absolute");
-        } else {
-            menuButton.dataset.state = "closed";
-            mobileNav?.classList.remove("absolute");
-            mobileNav?.classList.add("hidden");
-        }
-    }
-
-    document.addEventListener("astro:page-load", () => {
-        resetMobileNav();
-        updateActiveNav();
+      link.classList.toggle("hover:cursor-default", isActive);
+      link.classList.toggle("animated-link", !isActive);
+      link.setAttribute("aria-current", isActive ? "page" : "false");
     });
+  }
 
-    document.addEventListener("click", (event) => {
-        const target = event.target;
-        if (!(target instanceof Element)) return;
-        if (target.closest("#menuToggle")) {
-            toggleMobileNav();
-        }
-    });
-
-    if (document.readyState !== "loading") {
-        resetMobileNav();
-        updateActiveNav();
+  function toggleMobileNav() {
+    const menuButton = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+    if (!menuButton) return;
+    if (menuButton.dataset.state === "closed") {
+      menuButton.dataset.state = "open";
+      mobileNav?.classList.remove("hidden");
+      mobileNav?.classList.add("absolute");
     } else {
-        document.addEventListener("DOMContentLoaded", () => {
-            resetMobileNav();
-            updateActiveNav();
-        });
+      menuButton.dataset.state = "closed";
+      mobileNav?.classList.remove("absolute");
+      mobileNav?.classList.add("hidden");
     }
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    resetMobileNav();
+    updateActiveNav();
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    if (target.closest("#menuToggle")) {
+      toggleMobileNav();
+    }
+  });
+
+  if (document.readyState !== "loading") {
+    resetMobileNav();
+    updateActiveNav();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      resetMobileNav();
+      updateActiveNav();
+    });
+  }
 </script>
 
 <div class={className}>
-    {
-        isMobile ? (
-            <div>
-                <nav class="flex gap-3">
-                    {links.map((link) => (
-                        <a data-nav-link={link.href} href={link.href}>
-                            {link.name}
-                        </a>
-                    ))}
-                </nav>
-            </div>
-        ) : (
-            <div class="surface">
-                <nav>
-                    <ul>
-                        {links.map((link) => (
-                            <li>
-                                <a
-                                    class:list={[
-                                        "text-green flex gap-2 items-center",
-                                        pathname === link.href
-                                            ? "hover:cursor-default"
-                                            : "animated-link"
-                                    ]}
-                                    data-nav-link={link.href}
-                                    href={link.href}
-                                    aria-current={pathname === link.href ? "page" : undefined}
-                                >
-                                    <link.icon class="size-4" />
-                                    {link.name}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            </div>
-        )
-    }
+  {
+    isMobile ? (
+      <div>
+        <nav class="flex gap-3">
+          {links.map((link) => (
+            <a data-nav-link={link.href} href={link.href}>
+              {link.name}
+            </a>
+          ))}
+        </nav>
+      </div>
+    ) : (
+      <div class="surface">
+        <nav>
+          <ul>
+            {links.map((link) => (
+              <li>
+                <a
+                  class:list={[
+                    "text-green flex gap-2 items-center",
+                    pathname === link.href
+                      ? "hover:cursor-default"
+                      : "animated-link",
+                  ]}
+                  data-nav-link={link.href}
+                  href={link.href}
+                  aria-current={pathname === link.href ? "page" : undefined}
+                >
+                  <link.icon class="size-4" />
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 </div>
