@@ -75,8 +75,8 @@ Oh! And if all goes well, this post should also be posted up to my PDS in
 
 To summarize, unemployment has its ups and downs, trying to make the best of it
 but it is stressful nonetheless. I'm writing this (and doing photography, and
-building this site) because I feel a strong responsibility to put out real
-human-made stuff, as corporations seem to be obsessed with trying to get AI to
-take that from us. I'm not sure if anyone is going to read this, but if you do,
-feel free to hit me up on bluesky to tell me a random fact you enjoy! I'm
-[@dustycode.dev](https://bsky.app/profile/dustycode.dev).
+building this site) because I feel a strong sense of responsibility to put out
+real human-made creative stuff, as corporations seem to be currently obsessed
+with trying to get AI to take that from us. I'm not sure if anyone is going to
+read this, but if you do, feel free to hit me up on bluesky to tell me a random
+fact you enjoy! I'm [@dustycode.dev](https://bsky.app/profile/dustycode.dev).
