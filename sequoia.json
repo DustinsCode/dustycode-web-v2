@@ -1,0 +1,17 @@
+{
+  "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
+  "siteUrl": "https://dustycode.dev",
+  "contentDir": "./blog",
+  "imagesDir": "./src/assets/blogPhotos",
+  "outputDir": "./dist",
+  "pathPrefix": "/blog",
+  "publicationUri": "at://did:plc:3ezyph3rwsv423umnyue5wfi/site.standard.publication/3ms7fr5ohm22i",
+  "frontmatter": {
+    "publishDate": "pubDate",
+    "coverImage": "coverImage"
+  },
+  "publishContent": true,
+  "bluesky": {
+    "enabled": true
+  }
+}
