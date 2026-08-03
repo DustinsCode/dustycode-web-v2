@@ -34,7 +34,9 @@ const displayDate = post.data.pubDate.toLocaleDateString("en-US", {
     ><ChevronLeft class="size-4" />back
   </a>
   <div class="surface">
-    <article class="prose dark:prose-invert w-full mx-auto prose-a:link">
+    <article
+      class="prose dark:prose-invert w-full mx-auto prose-a:link prose-li:my-0"
+    >
       {
         post.data.coverImage && (
           <div class="not-prose w-full! flex justify-center">

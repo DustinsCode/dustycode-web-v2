@@ -127,7 +127,7 @@ h2 {
 }
 
 @utility link {
-  @apply hover:cursor-pointer text-blue;
+  @apply hover:cursor-pointer text-blue hover:underline;
 }
 
 .skeleton {
